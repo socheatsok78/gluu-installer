@@ -1,20 +1,22 @@
 #!/usr/bin/env bash
 
+set -e
+
 # Version of Gluu to be installed
 GLUU_VERSION=${GLUU_VERSION:-3.1.6}
 GLUU_BUILD=sp1
 
 # Convert stirng to lower case
 function lowercase() {
-    echo $@ | tr '[:upper:]' '[:lower:]';
+    tr '[:upper:]' '[:lower:]';
 }
 
 # Getting operitating system information
-LSB_RELEASE_ID=$(lsb_release --id --short | lowercase)
-LSB_RELEASE_CODENAME=$(lsb_release --codename --short)
+export LSB_RELEASE_ID=$(lsb_release --id --short | lowercase)
+export LSB_RELEASE_CODENAME=$(lsb_release --codename --short)
 
 # Variables
-LINUX_DISTRO=${LSB_RELEASE_ID:-ubuntu}
+LINUX_DISTRO=${LSB_RELEASE_ID}
 
 case "$LSB_RELEASE_CODENAME" in
     "jessie")
@@ -24,7 +26,7 @@ case "$LSB_RELEASE_CODENAME" in
         LINUX_CODENAME="stretch-stable"
     ;;
     *)
-        LINUX_CODENAME=${LSB_RELEASE_CODENAME:-xenial}
+        LINUX_CODENAME=${LSB_RELEASE_CODENAME}
     ;;
 esac
 
@@ -51,7 +53,7 @@ apt-get update
 
 # Install Gluu Server
 echo ">>> Install Gluu Server: gluu-server-${GLUU_VERSION}.${GLUU_BUILD}"
-apt-get install "gluu-server-${GLUU_VERSION}.${GLUU_BUILD}"
+apt-get install -y "gluu-server-${GLUU_VERSION}.${GLUU_BUILD}"
 
 # Start the server and log in
 echo ">>> Starting gluu-server vm..."
