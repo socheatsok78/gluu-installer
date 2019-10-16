@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
 # Version of Gluu to be installed
-GLUU_VERSION=${GLUU_VERSION:-3.1.6.sp1}
+GLUU_VERSION=${GLUU_VERSION:-3.1.6}
+GLUU_BUILD=sp1
 
 # Convert stirng to lower case
 function lowercase() {
@@ -49,5 +50,9 @@ echo "Update/Clean Repo"
 apt-get update
 
 # Install Gluu Server
-echo "Install Gluu Server: gluu-server-${GLUU_VERSION}"
-apt-get install "gluu-server-${GLUU_VERSION}"
+echo "Install Gluu Server: gluu-server-${GLUU_VERSION}.${GLUU_BUILD}"
+apt-get install "gluu-server-${GLUU_VERSION}.${GLUU_BUILD}"
+
+# Start the server and log in
+service gluu-server-${GLUU_VERSION} start
+service gluu-server-${GLUU_VERSION} login
