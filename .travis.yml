@@ -1,0 +1,8 @@
+dist: xenial
+addons:
+  apt:
+    update: true
+before_install:
+  - chmod +x install-gluu.sh
+install:
+  - ./install-gluu.sh
