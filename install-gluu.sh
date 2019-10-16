@@ -13,7 +13,7 @@ LSB_RELEASE_ID=$(lsb_release --id --short | lowercase)
 LSB_RELEASE_CODENAME=$(lsb_release --codename --short)
 
 # Variables
-LINUX_DISTRO=${LSB_RELEASE_ID:-debian}
+LINUX_DISTRO=${LSB_RELEASE_ID}
 
 case "$LSB_RELEASE_CODENAME" in
     "jessie")
