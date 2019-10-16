@@ -13,7 +13,7 @@ LSB_RELEASE_ID=$(lsb_release --id --short | lowercase)
 LSB_RELEASE_CODENAME=$(lsb_release --codename --short)
 
 # Variables
-LINUX_DISTRO=${LSB_RELEASE_ID}
+LINUX_DISTRO=${LSB_RELEASE_ID:-ubuntu}
 
 case "$LSB_RELEASE_CODENAME" in
     "jessie")
@@ -23,7 +23,7 @@ case "$LSB_RELEASE_CODENAME" in
         LINUX_CODENAME="stretch-stable"
     ;;
     *)
-        LINUX_CODENAME=${LSB_RELEASE_CODENAME}
+        LINUX_CODENAME=${LSB_RELEASE_CODENAME:-xenial}
     ;;
 esac
 
