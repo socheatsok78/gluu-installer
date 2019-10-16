@@ -55,4 +55,4 @@ apt-get install "gluu-server-${GLUU_VERSION}.${GLUU_BUILD}"
 
 # Start the server and log in
 service gluu-server-${GLUU_VERSION} start
-service gluu-server-${GLUU_VERSION} login
+service gluu-server-${GLUU_VERSION} login < setup.sh
