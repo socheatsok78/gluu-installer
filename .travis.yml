@@ -1,5 +1,6 @@
 dist: xenial
 sudo: true
+language: python
 addons:
   apt:
     update: true
@@ -7,3 +8,6 @@ before_install:
   - chmod +x install-gluu.sh
 install:
   - sudo ./install-gluu.sh
+script:
+  - cd /install/community-edition-setup
+  - ./setup.py
