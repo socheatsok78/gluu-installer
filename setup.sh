@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 
-cd /install/community-edition-setup
+echo "Listing directory"
+ls -la /install
+
+cd /install/community-edition-setup/
 ./setup.py
 
 exit 0;

@@ -36,23 +36,26 @@ echo "--------------------------------------------------"
 # Add Gluu Repository
 APT_REPO="deb https://repo.gluu.org/${LINUX_DISTRO}/ ${LINUX_CODENAME} main"
 
-echo "Add Gluu Repository: $APT_REPO"
+echo ">>> Add Gluu Repository: $APT_REPO"
 echo $APT_REPO > /etc/apt/sources.list.d/gluu-repo.list
 
 # Add Gluu GPG Key
 GPG_KEY="https://repo.gluu.org/${LINUX_DISTRO}/gluu-apt.key"
 
-echo "Add Gluu GPG Key: $GPG_KEY"
+echo ">>> Add Gluu GPG Key: $GPG_KEY"
 curl "$GPG_KEY" | apt-key add -
 
 # Update/Clean Repo
-echo "Update/Clean Repo"
+echo ">>> Update/Clean Repo"
 apt-get update
 
 # Install Gluu Server
-echo "Install Gluu Server: gluu-server-${GLUU_VERSION}.${GLUU_BUILD}"
+echo ">>> Install Gluu Server: gluu-server-${GLUU_VERSION}.${GLUU_BUILD}"
 apt-get install "gluu-server-${GLUU_VERSION}.${GLUU_BUILD}"
 
 # Start the server and log in
+echo ">>> Starting gluu-server vm..."
 service gluu-server-${GLUU_VERSION} start
+
+echo ">>> Login to the gluu-server vm..."
 service gluu-server-${GLUU_VERSION} login < setup.sh
