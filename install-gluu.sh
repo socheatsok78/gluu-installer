@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# Version of Gluu to be installed
+GLUU_VERSION=${GLUU_VERSION:-3.1.6.sp1}
+
 # Convert stirng to lower case
 function lowercase() {
     echo $@ | tr '[:upper:]' '[:lower:]';
@@ -13,7 +16,18 @@ LSB_RELEASE_CODENAME=$(lsb_release --codename --short)
 LINUX_DISTRO=${LSB_RELEASE_ID:-debian}
 LINUX_CODENAME=${LSB_RELEASE_CODENAME:-stretch}
 
-# Add repository to sources list
-echo "Add repository to sources list..."
+# Add Gluu Repository
+echo "Add Gluu Repository"
 echo "deb https://repo.gluu.org/${LINUX_DISTRO}/ ${LINUX_CODENAME}-stable main" > /etc/apt/sources.list.d/gluu-repo.list
 
+# Add Gluu GPG Key
+echo "Add Gluu GPG Key"
+curl https://repo.gluu.org/debian/gluu-apt.key | apt-key add -
+
+# Update/Clean Repo
+echo "Update/Clean Repo"
+apt-get update
+
+# Install Gluu Server
+echo "Install Gluu Server"
+apt-get install "gluu-server-${GLUU_VERSION}"
