@@ -27,6 +27,11 @@ case "$LSB_RELEASE_CODENAME" in
     ;;
 esac
 
+echo "--------------------------------------------------"
+echo "Distro: $LINUX_DISTRO"
+echo "Codename: $LINUX_CODENAME"
+echo "--------------------------------------------------"
+
 # Add Gluu Repository
 echo "Add Gluu Repository"
 echo "deb https://repo.gluu.org/${LINUX_DISTRO}/ ${LINUX_CODENAME} main" > /etc/apt/sources.list.d/gluu-repo.list
