@@ -33,7 +33,7 @@ echo "deb https://repo.gluu.org/${LINUX_DISTRO}/ ${LINUX_CODENAME} main" > /etc/
 
 # Add Gluu GPG Key
 echo "Add Gluu GPG Key"
-curl https://repo.gluu.org/debian/gluu-apt.key | apt-key add -
+curl https://repo.gluu.org/${LINUX_DISTRO}/gluu-apt.key | apt-key add -
 
 # Update/Clean Repo
 echo "Update/Clean Repo"
