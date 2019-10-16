@@ -6,4 +6,4 @@ addons:
 before_install:
   - chmod +x install-gluu.sh
 install:
-  - ./install-gluu.sh
+  - sudo ./install-gluu.sh
