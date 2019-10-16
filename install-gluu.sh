@@ -14,11 +14,22 @@ LSB_RELEASE_CODENAME=$(lsb_release --codename --short)
 
 # Variables
 LINUX_DISTRO=${LSB_RELEASE_ID:-debian}
-LINUX_CODENAME=${LSB_RELEASE_CODENAME:-stretch}
+
+case "$LSB_RELEASE_CODENAME" in
+    "jessie")
+        LINUX_CODENAME="stable"
+    ;;
+    "stretch")
+        LINUX_CODENAME="stretch-stable"
+    ;;
+    *)
+        LINUX_CODENAME=${LSB_RELEASE_CODENAME:-xenial}
+    ;;
+esac
 
 # Add Gluu Repository
 echo "Add Gluu Repository"
-echo "deb https://repo.gluu.org/${LINUX_DISTRO}/ ${LINUX_CODENAME}-stable main" > /etc/apt/sources.list.d/gluu-repo.list
+echo "deb https://repo.gluu.org/${LINUX_DISTRO}/ ${LINUX_CODENAME} main" > /etc/apt/sources.list.d/gluu-repo.list
 
 # Add Gluu GPG Key
 echo "Add Gluu GPG Key"
