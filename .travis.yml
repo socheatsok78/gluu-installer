@@ -13,8 +13,8 @@ before_install:
   - chmod +x ./build/docker.sh
 stages:
   - ci
-  - debian
   - ubuntu
+  - debian
 jobs:
   include:
     - stage: ci
