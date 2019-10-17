@@ -1,7 +1,5 @@
 FROM debian:stretch
 
-RUN dpkg ––configure –a
-
 RUN apt-get update -q && \
     apt-get install -y -f \
     apt-transport-https \
