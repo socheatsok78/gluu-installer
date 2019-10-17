@@ -2,6 +2,9 @@
 
 set -e
 
+# Check Official Gluu repository for more information
+# https://repo.gluu.org/
+
 # Version of Gluu to be installed
 GLUU_VERSION=${GLUU_VERSION:-3.1.6}
 GLUU_BUILD=sp1
@@ -12,31 +15,38 @@ function lowercase() {
 }
 
 # Getting operitating system information
-export LSB_RELEASE_ID=$(lsb_release --id --short | lowercase)
-export LSB_RELEASE_CODENAME=$(lsb_release --codename --short)
+LSB_RELEASE_ID=$(lsb_release --id --short | lowercase)
+LSB_RELEASE_CODENAME=$(lsb_release --codename --short)
 
 # Variables
-LINUX_DISTRO=${LSB_RELEASE_ID}
+LINUX_DISTRO=${LSB_RELEASE_ID:-ubuntu}
 
 if [ "$LSB_RELEASE_ID" = "debian" ]; then
     case "$LSB_RELEASE_CODENAME" in
-        "jessie")
-            LINUX_CODENAME="stable"
-        ;;
         "stretch")
             LINUX_CODENAME="stretch-stable"
         ;;
         *)
-            LINUX_CODENAME=${LSB_RELEASE_CODENAME}
+            LINUX_CODENAME="stable"
         ;;
     esac
+else
+    LINUX_CODENAME=${LSB_RELEASE_CODENAME:-xenial}
 fi
 
-
+# Print system information
 echo "--------------------------------------------------"
 echo "Distro: $LINUX_DISTRO"
 echo "Codename: $LINUX_CODENAME"
 echo "--------------------------------------------------"
+
+# Check operating system information
+function check_system_info() {
+    if [ -z "$LINUX_DISTRO" ] || [ -z "$LINUX_CODENAME" ]; then
+        echo "Could not determind operating system distribution."
+        exit 1
+    fi
+}
 
 # Add Gluu Repository
 function gluu_add_repo() {
@@ -75,6 +85,8 @@ function gluu_start_service() {
 }
 
 function main() {
+    check_system_info
+    
     gluu_add_repo
     gluu_add_gpg
     apt_clean
