@@ -2,14 +2,10 @@
 
 set -e
 
-echo "Listing directory"
-ls -la /install
+# Accept MIT license
+echo 'yes'
 
 cd /install/community-edition-setup
-
-echo "Listing directory"
-ls -la
-
 ./setup.py
 
 exit 0;
