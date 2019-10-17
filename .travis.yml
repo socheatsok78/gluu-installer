@@ -35,4 +35,4 @@ jobs:
     - stage: ubuntu
       name: Ubuntu Trusty
       script:
-        - ./build/docker.sh trusty jessie
+        - ./build/docker.sh ubuntu trusty
