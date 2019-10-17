@@ -7,7 +7,9 @@
 Central authentication & authorization
 for web and mobile applications.
 
-## Install **Gluu** using one-click-installer
+For more information please visit: [Gluu Website](https://www.gluu.org/)
+
+### Install **Gluu** using one-click-installer
 
 -   Via `wget`
 
@@ -23,3 +25,8 @@ curl -fsSL https://raw.githubusercontent.com/socheatsok78/gluu-installer/master/
 
 [travis-ci-build]: https://travis-ci.com/socheatsok78/gluu-installer
 [github-license]: https://github.com/socheatsok78/gluu-installer/blob/master/LICENSE
+
+### Additional guide
+
+-   [Preparing VM for Gluu Server Installation](https://gluu.org/docs/ce/installation-guide/)
+-   [Post-Install Service Setup](https://gluu.org/docs/ce/installation-guide/setup_py/)
