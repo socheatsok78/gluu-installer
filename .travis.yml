@@ -24,6 +24,10 @@ jobs:
         - sudo ./install-gluu.sh
       script:
         - sudo ./scripts/post-install.sh
+    - stage: one-click
+      name: One-Click Installer
+      script:
+        - ./build/docker.sh one-click installer
     - stage: ubuntu
       name: Xenial
       script:
@@ -40,7 +44,3 @@ jobs:
       name: Jessie
       script:
         - ./build/docker.sh debian jessie
-    - stage: one-click
-      name: One-Click Installer
-      script:
-        - ./build/docker.sh one-click installer
