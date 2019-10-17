@@ -9,13 +9,13 @@ Gluu one-click-installer
 -   Via `wget`
 
 ```sh
-    sh -c "$(wget https://raw.githubusercontent.com/socheatsok78/gluu-installer/master/setup.sh -O -)"
+sh -c "$(wget https://raw.githubusercontent.com/socheatsok78/gluu-installer/master/setup.sh -O -)"
 ```
 
 -   Via `curl`
 
 ```sh
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/socheatsok78/gluu-installer/master/setup.sh)"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/socheatsok78/gluu-installer/master/setup.sh)"
 ```
 
 [travis-ci-build]: https://travis-ci.com/socheatsok78/gluu-installer
