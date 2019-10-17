@@ -1,5 +1,7 @@
 FROM debian:stretch
 
+USER root
+
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt autoremove && \ 
