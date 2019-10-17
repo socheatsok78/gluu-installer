@@ -2,7 +2,11 @@ FROM debian:stretch
 
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN apt-get update -q && \
+RUN apt autoremove && \ 
+    apt autoclean && \
+    apt clean
+
+RUN apt-get update -qq && \
     apt-get install -y -f \
     apt-transport-https \
     ca-certificates \
