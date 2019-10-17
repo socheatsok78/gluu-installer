@@ -15,7 +15,7 @@ sh -c "$(wget https://raw.githubusercontent.com/socheatsok78/gluu-installer/mast
 -   Via `curl`
 
 ```sh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/socheatsok78/gluu-installer/master/setup.sh)"
+curl -fsSL https://raw.githubusercontent.com/socheatsok78/gluu-installer/master/setup.sh | bash
 ```
 
 [travis-ci-build]: https://travis-ci.com/socheatsok78/gluu-installer
