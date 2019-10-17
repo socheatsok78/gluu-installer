@@ -1,5 +1,5 @@
 dist: xenial
-sudo: true
+sudo: required
 language: python
 addons:
   apt:
@@ -11,4 +11,4 @@ before_install:
 install:
   - sudo ./install-gluu.sh
 script:
-  - ./scripts/post-install.sh
+  - sudo ./scripts/post-install.sh
