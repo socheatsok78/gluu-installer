@@ -11,15 +11,18 @@ before_install:
   - chmod +x deploy.sh
   - chmod +x ./scripts/post-install.sh
   - chmod +x ./build/docker.sh
-install:
-  - sudo ./install-gluu.sh
-script:
-  - sudo ./scripts/post-install.sh
 stages:
+  - ci
   - debian
   - ubuntu
 jobs:
   include:
+    - stage: ci
+      name: Travis CI
+      install:
+        - sudo ./install-gluu.sh
+      script:
+        - sudo ./scripts/post-install.sh
     - stage: debian
       name: Debian Stretch
       script:
