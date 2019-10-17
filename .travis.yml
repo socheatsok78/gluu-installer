@@ -6,8 +6,9 @@ addons:
     update: true
 before_install:
   - chmod +x install-gluu.sh
+  - chmod +x deploy.sh
+  - chmod +x ./scripts/post-install.sh
 install:
   - sudo ./install-gluu.sh
 script:
-  - cd /install/community-edition-setup
-  - ./setup.py
+  - ./scripts/post-install.sh

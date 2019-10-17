@@ -74,11 +74,6 @@ function gluu_start_service() {
     service gluu-server-${GLUU_VERSION} start
 }
 
-function gluu_service_login() {
-    echo ">>> Login to the gluu-server vm..."
-    service gluu-server-${GLUU_VERSION} login < setup.sh
-}
-
 function main() {
     gluu_add_repo
     gluu_add_gpg
