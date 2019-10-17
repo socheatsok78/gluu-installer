@@ -86,3 +86,7 @@ function main() {
     gluu_installer
     gluu_start_service
 }
+
+
+# Run main
+main
