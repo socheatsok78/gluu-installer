@@ -6,8 +6,8 @@ set -e
 # https://repo.gluu.org/
 
 # Version of Gluu to be installed
-GLUU_VERSION=${GLUU_VERSION:-3.1.6}
-GLUU_BUILD=sp1
+export GLUU_VERSION=${GLUU_VERSION:-3.1.6}
+export GLUU_BUILD=sp1
 
 # Convert stirng to lower case
 function lowercase() {
@@ -15,23 +15,23 @@ function lowercase() {
 }
 
 # Getting operitating system information
-LSB_RELEASE_ID=$(lsb_release --id --short | lowercase)
-LSB_RELEASE_CODENAME=$(lsb_release --codename --short)
+export LSB_RELEASE_ID=$(lsb_release --id --short | lowercase)
+export LSB_RELEASE_CODENAME=$(lsb_release --codename --short)
 
 # Variables
-LINUX_DISTRO=${LSB_RELEASE_ID:-ubuntu}
+export LINUX_DISTRO=${LSB_RELEASE_ID:-ubuntu}
 
 if [ "$LSB_RELEASE_ID" = "debian" ]; then
     case "$LSB_RELEASE_CODENAME" in
         "stretch")
-            LINUX_CODENAME="stretch-stable"
+            export LINUX_CODENAME="stretch-stable"
         ;;
         *)
-            LINUX_CODENAME="stable"
+            export LINUX_CODENAME="stable"
         ;;
     esac
 else
-    LINUX_CODENAME=${LSB_RELEASE_CODENAME:-xenial}
+    export LINUX_CODENAME=${LSB_RELEASE_CODENAME:-xenial}
 fi
 
 # Print system information
@@ -86,7 +86,7 @@ function gluu_start_service() {
 
 function main() {
     check_system_info
-    
+
     gluu_add_repo
     gluu_add_gpg
     apt_clean
