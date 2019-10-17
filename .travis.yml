@@ -1,6 +1,8 @@
 dist: xenial
 sudo: required
 language: python
+services:
+  - docker
 addons:
   apt:
     update: true
@@ -8,7 +10,29 @@ before_install:
   - chmod +x install-gluu.sh
   - chmod +x deploy.sh
   - chmod +x ./scripts/post-install.sh
+  - chmod +x ./build/docker.sh
 install:
   - sudo ./install-gluu.sh
 script:
   - sudo ./scripts/post-install.sh
+stages:
+  - debian
+  - ubuntu
+jobs:
+  include:
+    - stage: debian
+      name: Debian Stretch
+      script:
+        - ./build/docker.sh debian stretch
+    - stage: debian
+      name: Debian Jessie
+      script:
+        - ./build/docker.sh debian jessie
+    - stage: ubuntu
+      name: Ubuntu Xenial
+      script:
+        - ./build/docker.sh ubuntu xenial
+    - stage: ubuntu
+      name: Ubuntu Trusty
+      script:
+        - ./build/docker.sh trusty jessie
