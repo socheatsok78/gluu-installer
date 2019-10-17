@@ -4,6 +4,8 @@ USER root
 
 ENV DEBIAN_FRONTEND noninteractive
 
+RUN /sbin/init &
+
 RUN apt autoremove && \ 
     apt autoclean && \
     apt clean
