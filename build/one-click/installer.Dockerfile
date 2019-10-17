@@ -14,6 +14,8 @@ COPY . /opt/gluu-installer
 
 WORKDIR /opt/gluu-installer
 
-RUN sh -c "$(curl -fsSL https://raw.githubusercontent.com/socheatsok78/gluu-installer/master/setup.sh)"
+RUN curl -fsSL https://raw.githubusercontent.com/socheatsok78/gluu-installer/master/setup.sh | bash && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
 CMD [ "bash" ]

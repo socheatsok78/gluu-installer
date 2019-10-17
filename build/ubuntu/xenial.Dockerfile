@@ -18,7 +18,9 @@ RUN chmod +x install-gluu.sh && \
     chmod +x scripts/post-install.sh && \
     chmod +x deploy.sh
 
-RUN ./install-gluu.sh
+RUN ./install-gluu.sh && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
 RUN ./scripts/post-install.sh
 
