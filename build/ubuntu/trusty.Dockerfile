@@ -15,7 +15,8 @@ COPY . /opt/gluu-installer
 WORKDIR /opt/gluu-installer
 
 RUN chmod +x install-gluu.sh && \
-    chmod +x setup.sh
+    chmod +x scripts/post-install.sh && \
+    chmod +x deploy.sh
 
 RUN ./install-gluu.sh
 
