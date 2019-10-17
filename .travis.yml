@@ -23,14 +23,6 @@ jobs:
         - sudo ./install-gluu.sh
       script:
         - sudo ./scripts/post-install.sh
-    - stage: debian
-      name: Stretch
-      script:
-        - ./build/docker.sh debian stretch
-    - stage: debian
-      name: Jessie
-      script:
-        - ./build/docker.sh debian jessie
     - stage: ubuntu
       name: Xenial
       script:
@@ -39,3 +31,11 @@ jobs:
       name: Trusty
       script:
         - ./build/docker.sh ubuntu trusty
+    - stage: debian
+      name: Stretch
+      script:
+        - ./build/docker.sh debian stretch
+    - stage: debian
+      name: Jessie
+      script:
+        - ./build/docker.sh debian jessie
