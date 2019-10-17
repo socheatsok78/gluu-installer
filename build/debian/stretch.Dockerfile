@@ -4,7 +4,7 @@ USER root
 
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN /sbin/init & && \
+RUN /sbin/init &; \
     mkdir -p /run/dbus && \
     dbus-daemon --system
 
