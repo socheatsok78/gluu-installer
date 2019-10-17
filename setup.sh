@@ -11,7 +11,7 @@ function apt_update() {
 }
 
 function apt_install_git() {
-    echo ">>> Installing GIT0..."
+    echo ">>> Installing GIT..."
     apt-get install -y git
 }
 
