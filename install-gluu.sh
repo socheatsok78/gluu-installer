@@ -18,17 +18,20 @@ export LSB_RELEASE_CODENAME=$(lsb_release --codename --short)
 # Variables
 LINUX_DISTRO=${LSB_RELEASE_ID}
 
-case "$LSB_RELEASE_CODENAME" in
-    "jessie")
-        LINUX_CODENAME="stable"
-    ;;
-    "stretch")
-        LINUX_CODENAME="stretch-stable"
-    ;;
-    *)
-        LINUX_CODENAME=${LSB_RELEASE_CODENAME}
-    ;;
-esac
+if [ "$LSB_RELEASE_ID" = "debian" ]; then
+    case "$LSB_RELEASE_CODENAME" in
+        "jessie")
+            LINUX_CODENAME="stable"
+        ;;
+        "stretch")
+            LINUX_CODENAME="stretch-stable"
+        ;;
+        *)
+            LINUX_CODENAME=${LSB_RELEASE_CODENAME}
+        ;;
+    esac
+fi
+
 
 echo "--------------------------------------------------"
 echo "Distro: $LINUX_DISTRO"
@@ -36,28 +39,50 @@ echo "Codename: $LINUX_CODENAME"
 echo "--------------------------------------------------"
 
 # Add Gluu Repository
-APT_REPO="deb https://repo.gluu.org/${LINUX_DISTRO}/ ${LINUX_CODENAME} main"
+function gluu_add_repo() {
+    GLUU_REPO="deb https://repo.gluu.org/${LINUX_DISTRO}/ ${LINUX_CODENAME} main"
+    GLUU_REPO_FILE="/etc/apt/sources.list.d/gluu-repo.list"
 
-echo ">>> Add Gluu Repository: $APT_REPO"
-echo $APT_REPO > /etc/apt/sources.list.d/gluu-repo.list
+    echo ">>> Add Gluu Repository: $GLUU_REPO"
+    echo $GLUU_REPO > $GLUU_REPO_FILE
+}
 
 # Add Gluu GPG Key
-GPG_KEY="https://repo.gluu.org/${LINUX_DISTRO}/gluu-apt.key"
+function gluu_add_gpg() {
+    GLUU_GPG_KEY="https://repo.gluu.org/${LINUX_DISTRO}/gluu-apt.key"
 
-echo ">>> Add Gluu GPG Key: $GPG_KEY"
-curl "$GPG_KEY" | apt-key add -
+    echo ">>> Add Gluu GPG Key: $GLUU_GPG_KEY"
+    curl "$GLUU_GPG_KEY" | apt-key add -
+}
 
 # Update/Clean Repo
-echo ">>> Update/Clean Repo"
-apt-get update
+function apt_clean() {
+    echo ">>> Update/Clean Repo"
+    apt-get update -q
+}
 
 # Install Gluu Server
-echo ">>> Install Gluu Server: gluu-server-${GLUU_VERSION}.${GLUU_BUILD}"
-apt-get install -y "gluu-server-${GLUU_VERSION}.${GLUU_BUILD}"
+function gluu_installer() {
+    echo ">>> Install Gluu Server: gluu-server-${GLUU_VERSION}.${GLUU_BUILD}"
+    apt-get install -y \
+        "gluu-server-${GLUU_VERSION}.${GLUU_BUILD}"
+}
 
 # Start the server and log in
-echo ">>> Starting gluu-server vm..."
-service gluu-server-${GLUU_VERSION} start
+function gluu_start_service() {
+    echo ">>> Starting gluu-server vm..."
+    service gluu-server-${GLUU_VERSION} start
+}
 
-echo ">>> Login to the gluu-server vm..."
-service gluu-server-${GLUU_VERSION} login < setup.sh
+function gluu_service_login() {
+    echo ">>> Login to the gluu-server vm..."
+    service gluu-server-${GLUU_VERSION} login < setup.sh
+}
+
+function main() {
+    gluu_add_repo
+    gluu_add_gpg
+    apt_clean
+    gluu_installer
+    gluu_start_service
+}
