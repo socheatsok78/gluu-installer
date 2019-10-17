@@ -48,6 +48,14 @@ function gluu_installer() {
 # Start the server and log in
 function gluu_start_service() {
     echo ">>> Starting gluu-server vm..."
+    
+    if [ "$LINUX_CODENAME" = "stretch" ]; then
+        /sbin/gluu-server-${GLUU_VERSION} enable
+        /sbin/gluu-server-${GLUU_VERSION} start
+    else
+        service gluu-server-${GLUU_VERSION} start
+    fi
+    
     service gluu-server-${GLUU_VERSION} start
 }
 
