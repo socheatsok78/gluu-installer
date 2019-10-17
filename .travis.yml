@@ -24,18 +24,18 @@ jobs:
       script:
         - sudo ./scripts/post-install.sh
     - stage: debian
-      name: Debian Stretch
+      name: Stretch
       script:
         - ./build/docker.sh debian stretch
     - stage: debian
-      name: Debian Jessie
+      name: Jessie
       script:
         - ./build/docker.sh debian jessie
     - stage: ubuntu
-      name: Ubuntu Xenial
+      name: Xenial
       script:
         - ./build/docker.sh ubuntu xenial
     - stage: ubuntu
-      name: Ubuntu Trusty
+      name: Trusty
       script:
         - ./build/docker.sh ubuntu trusty
