@@ -5,8 +5,24 @@ set -e
 GLUU_INSTALLER_REPO="https://github.com/socheatsok78/gluu-installer"
 GLUU_INSTALLER_DIR="gluu-installer"
 
+function apt_update() {
+    echo ">>> Updating APT Repository..."
+    apt-get update -qq
+}
+
+function apt_install_git() {
+    echo ">>> Installing GIT0..."
+    apt-get install -y git
+}
+
 function clone_installer_repo() {
     echo ">>> Cloning $GLUU_INSTALLER_REPO to $GLUU_INSTALLER_DIR folder"
+
+    if ! [ `command -v git` ]; then
+        apt_update
+        apt_install_git
+    fi
+    
     git clone "$GLUU_INSTALLER_REPO" "$GLUU_INSTALLER_DIR"
 }
 
