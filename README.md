@@ -1,4 +1,4 @@
-# <img width="18px" src="https://avatars0.githubusercontent.com/u/3717106?s=200&v=4"> [Gluu](https://www.gluu.org/) One-Click Installer
+# <img width="26px" src="https://avatars0.githubusercontent.com/u/3717106?s=200&v=4"> [Gluu](https://www.gluu.org/) One-Click Installer
 
 Central authentication & authorization
 for web and mobile applications.
