@@ -4,14 +4,15 @@ set -e
 
 GLUU_WORKDIR="/install/community-edition-setup"
 
-# Accept MIT license
-echo 'yes'
 
 echo ">>> Changing working directory to: $GLUU_WORKDIR"
 cd "$GLUU_WORKDIR"
 
 echo ">>> Starting setup.py script"
 ./setup.py
+
+# Accept MIT license
+echo 'Y'
 
 # Print setup.log
 if [ -f "$GLUU_WORKDIR/setup.log" ]; then
