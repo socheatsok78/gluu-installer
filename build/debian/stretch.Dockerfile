@@ -4,7 +4,9 @@ USER root
 
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN /sbin/init &
+RUN /sbin/init & && \
+    mkdir -p /run/dbus && \
+    dbus-daemon --system
 
 RUN apt autoremove && \ 
     apt autoclean && \
@@ -13,6 +15,7 @@ RUN apt autoremove && \
 RUN apt-get update -qq && \
     apt-get install -y -f \
     apt-transport-https \
+    default-dbus-session-bus \
     ca-certificates \
     lsb-release \
     curl \
