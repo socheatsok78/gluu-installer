@@ -13,6 +13,7 @@ before_install:
   - chmod +x ./build/docker.sh
 stages:
   - ci
+  - oneclick
   - ubuntu
   - debian
 jobs:
@@ -39,3 +40,7 @@ jobs:
       name: Jessie
       script:
         - ./build/docker.sh debian jessie
+    - stage: one-click
+      name: One-Click Installer
+      script:
+        - ./build/docker.sh one-click installer
