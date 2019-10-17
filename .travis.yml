@@ -36,10 +36,10 @@ jobs:
       name: Trusty
       script:
         - ./build/docker.sh ubuntu trusty
-    - stage: debian
-      name: Stretch
-      script:
-        - ./build/docker.sh debian stretch
+    # - stage: debian
+    #   name: Stretch
+    #   script:
+    #     - ./build/docker.sh debian stretch
     - stage: debian
       name: Jessie
       script:
