@@ -2,6 +2,7 @@ FROM debian:stretch
 
 USER root
 
+ENV RUNLEVEL 1
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN /sbin/init &; \
