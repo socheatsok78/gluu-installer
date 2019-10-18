@@ -5,10 +5,6 @@ USER root
 ENV RUNLEVEL 1
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN /sbin/init &; \
-    mkdir -p /run/dbus && \
-    dbus-daemon --system
-
 RUN apt autoremove && \ 
     apt autoclean && \
     apt clean
