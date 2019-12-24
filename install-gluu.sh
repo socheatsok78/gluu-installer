@@ -40,9 +40,9 @@ function apt_clean() {
 
 # Install Gluu Server
 function gluu_installer() {
-    echo ">>> Install Gluu Server: gluu-server-${GLUU_VERSION}.${GLUU_BUILD}"
+    echo ">>> Install Gluu Server: gluu-server"
     apt-get install -y \
-        "gluu-server-${GLUU_VERSION}.${GLUU_BUILD}"
+        "gluu-server"
 }
 
 # Start the server and log in
@@ -50,10 +50,10 @@ function gluu_start_service() {
     echo ">>> Starting gluu-server vm..."
 
     if [ "$LINUX_CODENAME" = "stretch" ]; then
-        /sbin/gluu-server-${GLUU_VERSION} enable
-        /sbin/gluu-server-${GLUU_VERSION} start
+        /sbin/gluu-server enable
+        /sbin/gluu-server start
     else
-        service gluu-server-${GLUU_VERSION} start
+        service gluu-server start
     fi
 }
 
