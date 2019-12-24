@@ -50,10 +50,10 @@ function gluu_start_service() {
     echo ">>> Starting gluu-server vm..."
 
     if [ "$LINUX_CODENAME" = "stretch" ]; then
-        /sbin/gluu-server enable
-        /sbin/gluu-server start
+        /sbin/gluu-serverd enable
+        /sbin/gluu-serverd start
     else
-        service gluu-server start
+        service gluu-serverd start
     fi
 }
 
